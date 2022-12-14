@@ -1,11 +1,13 @@
+
 FROM node:16-alpine as builder
+ENV CI=TRUE
 WORKDIR '/app'
 COPY package.json .
 RUN npm install
 COPY . .
 RUN npm run build
 
-ENTRYPOINT ["./entrypoint.sh"]
+
 
 
 FROM nginx
